@@ -15,16 +15,13 @@ body {
     /* Alinea los elementos verticalmente en el centro */
     justify-content: space-evenly;
     /* Espacia los elementos uniformemente */
-    margin-top: 40px;
     padding: 0;
-    background-color: rgb(106, 223, 241);
-    /* Color de fondo del header */
 }
 
 .encabezado {
     display: flex;
     /* Estilos para la imagen dentro del header */
-    max-width: 100%;
+    width: 100%;
     /* La imagen nunca será más ancha que su contenedor */
     flex: 1;
     /* Permite que la imagen crezca para ocupar el espacio disponible */
@@ -116,7 +113,7 @@ button {
     color: #3DC2EC;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background 0.3s ease;
 }
@@ -124,6 +121,14 @@ button {
 button:hover {
     background: #3DC2EC;
     color: #402E7A;
+}
+
+.centros button{
+    
+    background: #ffafcc;
+    color: black;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .video {
@@ -138,12 +143,8 @@ iframe {
     padding: 15px;
 }
 
-nav {
-    background-color: #952C87;
-    /* Color de fondo */
-}
 
-.menu {
+.menu,summary {
     color: white;
     font-size: 20px;
     text-decoration: none;
@@ -159,15 +160,23 @@ nav ul {
     padding: 0;
     list-style-type: none;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: nowrap;
+    flex-direction: column;
 }
 
 nav ul li {
     display: inline-flex;
     margin: 5px;
     padding: 5px;
+}
+.barra{
+    background-color: #952C87;
+    padding: 5px;
+    display: block;
+;
+}
+
+.barra summary{
+    list-style: none;
 }
 
 p {
@@ -182,7 +191,9 @@ p.intro {
     margin-bottom: 1em;
     color: #340759;
 }
-
+.introFrom{
+    text-align: center;
+}
 p.destacada {
     display: contents;
     align-content: center;
@@ -259,6 +270,9 @@ footer {
     margin-right: 8px;
 }
 
+#centroForm, #busquedaForm {
+    display: none; /* Ocultar el formulario inicialmente */
+}
 
 @media (min-width: 375px) {
     .flex-container {
@@ -267,9 +281,9 @@ footer {
     }
 
     nav {
+        display: flex;
         flex-direction: column;
-        justify-items: end;
-        align-items: center;
+        justify-items: flex-start;
         width: 100%;
         top: 0;
         left: 0;
@@ -305,9 +319,6 @@ footer {
         height: 400px;
     }
 
-    .portada {
-        height: 450px;
-    }
 
     .parrafo .intro {
         display: flex;
@@ -324,7 +335,19 @@ footer {
         font-size: 12px;
         text-align:justify;
     }
+    .mapa{
+        width: 100%;
+    }
+    .centros button{
+        display: flex;
+        justify-content: space-around;
+    }
 
+    .centros{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -345,8 +368,29 @@ footer {
         margin-right: 15px;
         margin-bottom: 15px;
     }
-
     .redes a {
         font-size: 15px;
+    }
+     
+    nav ul{
+        display: flex;
+        display: block;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-evenly;
+    }
+
+    .centros{
+        width: 50%;
+        margin: 15px;
+    }
+    .mapa{
+        width: 80%;
     }
 }
