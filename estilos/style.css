@@ -8,6 +8,10 @@ body {
     background-color: #FFE6FB;
 }
 
+#centroForm div{
+    color: red;
+}
+
 .flex-container {
     display: flexbox;
     flex-direction: column;
@@ -125,6 +129,13 @@ button:hover {
 
 .centros button{
     
+    background: #ffafcc;
+    color: black;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#botonRosa{
     background: #ffafcc;
     color: black;
     margin-top: 15px;
@@ -274,7 +285,14 @@ footer {
     display: none; /* Ocultar el formulario inicialmente */
 }
 
+.contenedorUsuarios{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espacio entre usuarios */
+    justify-content: center;
+}
 @media (min-width: 375px) {
+
     .flex-container {
         flex-direction: column;
         align-items: center;
@@ -348,10 +366,29 @@ footer {
         display: flex;
         flex-direction: column;
     }
+    .contenedorUsuarios  div {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        width: calc(50% - 20px); /* Dos usuarios por fila en pantallas medianas */
+        box-sizing: border-box;
+    }
+}
+
+
+@media (max-width: 668px) {
+    .contenedorUsuarios div {
+        width: 100%;
+    }
 }
 
 @media (min-width: 1200px) {
 
+
+    .contenedorUsuarios div{
+        width: calc(33.33% - 20px); /* Tres usuarios por fila */
+    }
     .parrafo {
         width: 55%;
     }

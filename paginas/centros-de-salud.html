@@ -53,23 +53,32 @@
 
                 <form id="centroForm">
                     <label for="nro">Número del centro:</label>
-                    <input type="number" id="nro" name="nro" required><br><br>
-
+                    <input type="number" id="nro" name="nro" required min="0">
+                    <div id="errorNro"></div>
+                    <br><br>
+                
                     <label for="localidad">Localidad:</label>
-                    <input type="text" id="localidad" name="localidad" required><br><br>
-
+                    <input type="text" id="localidad" name="localidad" required>
+                    <div id="errorLocalidad"></div>
+                    <br><br>
+                
                     <label for="direccion">Dirección:</label>
-                    <input type="text" id="direccion" name="direccion" required><br><br>
-
+                    <input type="text" id="direccion" name="direccion" required>
+                    <div id="errorDireccion"></div>
+                    <br><br>
+                
                     <label for="telefono">Teléfono:</label>
-                    <input type="text" id="telefono" name="telefono" required><br><br>
-
+                    <input type="text" id="telefono" name="telefono" required pattern="\d+" title="El teléfono debe contener solo números.">
+                    <div id="errorTelefono"></div>
+                    <br><br>
+                
                     <button type="submit">Agregar Centro</button>
                 </form>
 
 
+
                 <button id="imprimirCentros">Todos los Centros de salud</button>
-                <div id="resultado"></div> <!-- Contenedor para mostrar los centros -->
+                <div id="resultado" class="contenedorUsuarios"></div> <!-- Contenedor para mostrar los centros -->
             </div>
         
 

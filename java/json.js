@@ -1,13 +1,13 @@
-let datos =`[{"nro":"1","localidad":"Los Hornos", "direccion":"145 e/ 59 y 60","telefono":4509717},
-{"nro":"2","localidad":"Los Hornos", "direccion":"66 y 143","telefono":4509699},
-{"nro":"3","localidad":"San Carlos", "direccion":" e/ 146 y 147","telefono":4706675},
-{"nro":"4","localidad":"Villa Elisa","direccion":"Centenario y Arana","telefono":4870267},
-{"nro":"5","localidad":"City Bell","direccion":"12 y 19","telefono":4870267},
-{"nro":"6","localidad":"Villa Elvira","direccion":"122 e/ 80 y 81","telefono":4520077},
-{"nro":"7","localidad":"Villa Elvira","direccion":"7 y 82","telefono":4532585},
-{"nro":"8","localidad":"La Plata","direccion":"20 y 85","telefono":4515845},
-{"nro":"9","localidad":"Tolosa","direccion":"528 bis y 2 bis","telefono":4249595},
-{"nro":"10","localidad":"Abasto","direccion":"203 y 516","telefono":4913345}]`;
+let datos =`[{"nro":1,"localidad":"Los Hornos", "direccion":"145 e/ 59 y 60","telefono":4509717},
+{"nro":2,"localidad":"Los Hornos", "direccion":"66 y 143","telefono":4509699},
+{"nro":3,"localidad":"San Carlos", "direccion":" e/ 146 y 147","telefono":4706675},
+{"nro":4,"localidad":"Villa Elisa","direccion":"Centenario y Arana","telefono":4870267},
+{"nro":5,"localidad":"City Bell","direccion":"12 y 19","telefono":4870267},
+{"nro":6,"localidad":"Villa Elvira","direccion":"122 e/ 80 y 81","telefono":4520077},
+{"nro":7,"localidad":"Villa Elvira","direccion":"7 y 82","telefono":4532585},
+{"nro":8,"localidad":"La Plata","direccion":"20 y 85","telefono":4515845},
+{"nro":9,"localidad":"Tolosa","direccion":"528 bis y 2 bis","telefono":4249595},
+{"nro":10,"localidad":"Abasto","direccion":"203 y 516","telefono":4913345}]`;
 
 let currentPage = window.location.pathname;
 
@@ -32,33 +32,71 @@ if (currentPage.includes("index.html")) {
                 document.getElementById("centroForm").style.display = "block";
             });
             
-            //agregar el nuevo centro
+            // validaciones
             document.getElementById("centroForm").addEventListener("submit", function(event) {
                 event.preventDefault();  
             
+                // Obtiene los valores
+                let nro = document.getElementById("nro").value;
+                let localidad = document.getElementById("localidad").value;
+                let direccion = document.getElementById("direccion").value;
+                let telefono = document.getElementById("telefono").value;
+            
+                // Limpiar mensajes de errores
+                document.getElementById("errorNro").textContent = "";
+                document.getElementById("errorLocalidad").textContent = "";
+                document.getElementById("errorDireccion").textContent = "";
+                document.getElementById("errorTelefono").textContent = "";
+            
+                let valid = true; // verifica si el formulario es válido
+            
+                // pregunta si los valores ingresados son validos
+                if (!/^\d+$/.test(nro) || nro < 0) {
+                    document.getElementById("errorNro").textContent = "El número del centro debe ser un número.";
+                    valid = false;
+                }
+            
+                if (!/^\d+$/.test(telefono) || telefono < 0) {
+                    document.getElementById("errorTelefono").textContent = "El teléfono debe ser un número valido.";
+                    valid = false;
+                }
+            
+                if (localidad.length < 3) {
+                    document.getElementById("errorLocalidad").textContent = "La localidad debe tener al menos 3 caracteres.";
+                    valid = false;
+                }
+            
+                if (direccion.length < 3) {
+                    document.getElementById("errorDireccion").textContent = "La dirección debe tener al menos 3 caracteres.";
+                    valid = false;
+                }
+            
+                // Si el formulario no es válido, no se envía
+                if (!valid) {
+                    return;
+                }
+            
                 let nue = {
-                    nro: document.getElementById("nro").value,
-                    localidad: document.getElementById("localidad").value,
-                    direccion: document.getElementById("direccion").value,
-                    telefono: document.getElementById("telefono").value
+                    nro: nro,
+                    localidad: localidad,
+                    direccion: direccion,
+                    telefono: telefono
                 };
             
-                centros.push(nue);  // carga el nuevo centro 
-                localStorage.setItem("centros", JSON.stringify(centros));  // Actualizar
+                // Cargar el nuevo centro
+                centros.push(nue);  
+                localStorage.setItem("centros", JSON.stringify(centros));  // Actualizar el localStorage
             
                 console.log("El centro fue agregado.");
             
-                
-                document.getElementById("centroForm").reset();  // Limpia
-                document.getElementById("centroForm").style.display = "none";  // Oculta
-                document.getElementById("mostrarFormulario").style.display = "block";  // Muestra el botón nuevamente
-                alert ("El centro fue agregado");
+                document.getElementById("centroForm").reset();  // Limpiar 
+                document.getElementById("centroForm").style.display = "none";  // Ocultar 
+                document.getElementById("mostrarFormulario").style.display = "block";  // Muestra el botón otra vez
             });
             
             
-            function buscarCentro() {
-            }
             
+
             
             //mostrar los centros
             let centrosVisible = false; 
@@ -77,10 +115,10 @@ if (currentPage.includes("index.html")) {
             
                     centrosActualizados.forEach(function(centro) {
                         let centroInfo = `
-                            <p><strong>Centro Nº</strong> ${centro.nro}</p>
-                            <p><strong>Localidad:</strong> ${centro.localidad}</p>
-                            <p><strong>Dirección:</strong> ${centro.direccion}</p>
-                            <p><strong>Teléfono:</strong> ${centro.telefono}</p>
+                            <p><strong>Centro Nº</strong> ${centro.nro}
+                            <strong>Localidad:</strong> ${centro.localidad}
+                            <strong>Dirección:</strong> ${centro.direccion}
+                            <strong>Teléfono:</strong> ${centro.telefono}</p>
                             <hr>
                         `;
                         resultadoDiv.innerHTML += centroInfo;
