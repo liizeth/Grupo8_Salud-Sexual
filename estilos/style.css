@@ -290,6 +290,7 @@ footer {
     flex-wrap: wrap;
     gap: 10px; /* Espacio entre usuarios */
     justify-content: center;
+    margin: 15px;
 }
 @media (min-width: 375px) {
 
