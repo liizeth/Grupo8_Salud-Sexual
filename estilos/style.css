@@ -356,6 +356,8 @@ footer {
     }
     .mapa{
         width: 100%;
+        display: flex;
+        justify-content: center;
     }
     .centros button{
         display: flex;
